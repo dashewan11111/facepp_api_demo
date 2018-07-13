@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">buz</string>
+
+    <string name="com_loading">Loading&#8230;</string>
+    <string name="app_loading_title">提示</string>
+    <string name="com_loading_message">请稍等…</string>
+</resources>

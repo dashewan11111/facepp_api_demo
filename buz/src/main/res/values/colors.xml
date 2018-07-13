@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 顶部条相关 -->
+    <color name="TopTitleLayout_Btn_TextColor">@android:color/white</color>FF7992BF
+    <color name="TopTitleLayout_Btn_TextColor_pressed">#7FFFFFFF</color>
+    <color name="TopTitle_Center_Search_Bg">#FF4D699C</color>
+    <color name="TopTitle_Center_Search_Bg_Press">#FF3C588B</color>
+    <color name="TopTitle_Center_Search_TextColor">#FF7992BF</color>
+
+    <color name="dialog_content_text_blue">#5873B3</color>
+    <color name="common_green_1">#80aa19</color>
+
+</resources>

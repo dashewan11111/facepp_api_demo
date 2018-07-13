@@ -1,0 +1,39 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion '26.0.2'
+    defaultConfig {
+        applicationId "com.megvii.ui"
+        minSdkVersion 19
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    //compile 'com.github.limedroid:XDroidMvp:v1.8.1'
+    annotationProcessor rootProject.ext.dependencies["butterknife-apt"]
+    compile project(":mvp")
+    compile project(':buz')
+    compile files('libs/facepp_api.jar')
+}
+
+configurations {
+    all*.exclude group: 'com.squareup.okhttp3'
+}
+

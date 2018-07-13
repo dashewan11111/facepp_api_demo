@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout style="@style/item_attribute">
+
+        <TextView
+            style="@style/item_attribute_text"
+            android:text="年         龄" />
+
+        <TextView
+            android:id="@+id/attribute_age"
+            style="@style/item_attribute_text2"
+            tools:text="年龄年龄年龄年龄年龄年龄年龄年龄年" />
+    </LinearLayout>
+
+    <include layout="@layout/view_line" />
+
+    <LinearLayout style="@style/item_attribute">
+
+        <TextView
+            style="@style/item_attribute_text"
+            android:text="性         别" />
+
+        <TextView
+            android:id="@+id/attribute_gender"
+            style="@style/item_attribute_text2"
+            tools:text="年龄年龄年龄年龄年龄年龄年龄年龄年" />
+    </LinearLayout>
+
+    <include layout="@layout/view_line" />
+
+    <LinearLayout style="@style/item_attribute">
+
+        <TextView
+            style="@style/item_attribute_text"
+            android:text="情         绪" />
+
+        <TextView
+            android:id="@+id/attribute_emotion"
+            style="@style/item_attribute_text2"
+            tools:text="年龄年龄年龄年龄年龄年龄年龄年龄年" />
+    </LinearLayout>
+
+    <include layout="@layout/view_line" />
+
+    <LinearLayout style="@style/item_attribute">
+
+        <TextView
+            style="@style/item_attribute_text"
+            android:text="头部姿态" />
+
+        <TextView
+            android:id="@+id/attribute_head"
+            style="@style/item_attribute_text2"
+            tools:text="年龄年龄年龄年龄年龄年龄年龄年龄年" />
+    </LinearLayout>
+
+    <include layout="@layout/view_line" />
+
+    <LinearLayout style="@style/item_attribute">
+
+        <TextView
+            style="@style/item_attribute_text"
+            android:text="嘴部姿态" />
+
+        <TextView
+            android:id="@+id/attribute_mouth"
+            style="@style/item_attribute_text2"
+            tools:text="年龄年龄年龄年龄年龄年龄年龄年龄年" />
+    </LinearLayout>
+
+    <include layout="@layout/view_line" />
+
+    <LinearLayout style="@style/item_attribute">
+
+        <TextView
+            style="@style/item_attribute_text"
+            android:text="左眼状态" />
+
+        <TextView
+            android:id="@+id/attribute_left_eye"
+            style="@style/item_attribute_text2"
+            tools:text="年龄年龄年龄年龄年龄年龄年龄年龄年" />
+    </LinearLayout>
+
+    <include layout="@layout/view_line" />
+
+    <LinearLayout style="@style/item_attribute">
+
+        <TextView
+            style="@style/item_attribute_text"
+            android:text="右眼状态" />
+
+        <TextView
+            android:id="@+id/attribute_right_eye"
+            style="@style/item_attribute_text2"
+            tools:text="年龄年龄年龄年龄年龄年龄年龄年龄年" />
+    </LinearLayout>
+
+    <include layout="@layout/view_line" />
+</LinearLayout>
