@@ -104,4 +104,9 @@ public class FaceRectPointView extends View {
         this.px = px;
         this.py = py;
     }
+
+    public void setIndex(int index) {
+        this.index = index;
+        invalidate();
+    }
 }

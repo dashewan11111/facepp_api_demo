@@ -29,16 +29,6 @@ public class ApiListFragment extends XLazyFragment<ApiListPresenter> {
         recyclerView.verticalLayoutManager(context);
         adapter = new ApiListAdapter(getActivity());
         recyclerView.setAdapter(adapter);
-        //getP().loadData();
-    }
-
-    public void onDataLoaded(final List<ApiListItem> data) {
-//        getActivity().runOnUiThread(new Runnable() {
-//            @Override
-//            public void run() {
-//                adapter.refresh(data);
-//            }
-//        });
     }
 
     @Override

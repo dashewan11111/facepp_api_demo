@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/parameter_key"
+        style="@style/item_attribute_desc"
+        android:layout_marginTop="10dp" />
+
+    <include layout="@layout/view_line" />
+
+    <TextView
+        android:id="@+id/parameter_desc"
+        style="@style/item_attribute_desc" />
+
+    <GridLayout
+        android:id="@+id/parameter_pool"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:paddingStart="20dp" />
+
+</LinearLayout>

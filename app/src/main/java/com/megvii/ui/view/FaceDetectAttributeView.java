@@ -26,6 +26,8 @@ public class FaceDetectAttributeView extends LinearLayout implements IResultView
     TextView attributeRightEye;
 
     private LinearLayout rootView;
+    private TextView errorView;
+    private LinearLayout contentView;
 
     public FaceDetectAttributeView(Context context) {
         super(context);
@@ -51,15 +53,23 @@ public class FaceDetectAttributeView extends LinearLayout implements IResultView
         attributeMouth = rootView.findViewById(R.id.attribute_mouth);
         attributeLeftEye = rootView.findViewById(R.id.attribute_left_eye);
         attributeRightEye = rootView.findViewById(R.id.attribute_right_eye);
+
+        contentView = rootView.findViewById(R.id.content_view);
+        errorView = rootView.findViewById(R.id.error_view);
     }
 
     @Override
     public void refresh(Face data) {
+        rootView.setVisibility(VISIBLE);
         FaceAttributes attributes = data.getAttributes();
         if (null == attributes) {
+            errorView.setVisibility(VISIBLE);
+            contentView.setVisibility(GONE);
+            postInvalidate();
             return;
         }
-        rootView.setVisibility(VISIBLE);
+        errorView.setVisibility(GONE);
+        contentView.setVisibility(VISIBLE);
         attributeAge.setText(null == attributes.getAge() ? "" : attributes.getAge().getValue());
         attributeGender.setText(null == attributes.getGender() ? "" : attributes.getGender().getValue());
         attributeMotion.setText(null == attributes.getEmotion() ? "" : attributes.getEmotion().toString());

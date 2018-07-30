@@ -9,9 +9,14 @@ import android.widget.TextView;
 
 import com.megvii.ui.R;
 import com.megvii.ui.activity.ResultActivity;
-import com.megvii.ui.datasource.ApiDataSource;
 import com.megvii.ui.bean.ApiListItem;
-import com.megvii.ui.fragment.FaceDetectFragment;
+import com.megvii.ui.datasource.ApiDataSource;
+import com.megvii.ui.fragment.FaceCompareFragment;
+import com.megvii.ui.fragment.FaceGetDetailFragment;
+import com.megvii.ui.fragment.FaceSetAddFaceFragment;
+import com.megvii.ui.fragment.FaceSetDetailFragment;
+import com.megvii.ui.fragment.FaceSetRemoveFaceFragment;
+import com.megvii.ui.fragment.FaceSetUpdateFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -56,10 +61,26 @@ public class ApiListAdapter extends SimpleRecAdapter<ApiListItem, ApiListAdapter
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ResultActivity.launch((Activity) context, FaceDetectFragment.class.getName(), item.getTitle());
+                ResultActivity.launch((Activity) context, item.getClassName(), item.getTitle(),
+                        getSubFragment(item.getIndex()));
             }
         });
         holder.imgIcon.setImageResource(item.getResId());
+    }
+
+    private String getSubFragment(int index) {
+        switch (index) {
+            case 8:
+                return FaceSetAddFaceFragment.class.getName();
+            case 9:
+                return FaceSetRemoveFaceFragment.class.getName();
+            case 10:
+                return FaceSetUpdateFragment.class.getName();
+            case 11:
+                return FaceSetDetailFragment.class.getName();
+            default:
+                return "";
+        }
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {

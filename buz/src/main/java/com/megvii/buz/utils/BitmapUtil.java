@@ -3,7 +3,6 @@ package com.megvii.buz.utils;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Rect;
-import android.graphics.RectF;
 import android.os.Environment;
 import android.util.Base64;
 import android.util.Log;
@@ -68,7 +67,7 @@ public class BitmapUtil {
      */
     public static Bitmap base64ToBitmap(String base64Data) {
         byte[] bytes = Base64.decode(base64Data, Base64.DEFAULT);
-        Log.e("leeeeee", "bytes 数组大小 : " + bytes.length);
+        byte2float(bytes);
         return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
     }
 
@@ -130,7 +129,6 @@ public class BitmapUtil {
      * @return
      */
     public static Bitmap cropBitmap(Bitmap sourceBmp, Rect rect) {
-        Log.e("leeeee", rect.toString());
 
         int x = 0 > rect.left ? 0 : rect.left;
         int y = 0 > rect.top ? 0 : rect.top;
@@ -144,8 +142,6 @@ public class BitmapUtil {
         if (y + height > sourceBmp.getHeight()) {
             height -= (y + height) - sourceBmp.getHeight();
         }
-        Log.e("leeeee", width + " , " + height);
-        Log.e("leeeee", "Bitmap width : " + sourceBmp.getWidth() + " , Bitmap height : " + sourceBmp.getHeight());
 
         return Bitmap.createBitmap(sourceBmp, x, y, width, height);
     }
@@ -162,13 +158,6 @@ public class BitmapUtil {
         for (int i = 0; i < b.length; i++) {
             result[i] = getUint8(b[i]);
         }
-        for (float item : result) {
-            if (item >= 120) {
-                Log.e("leeee", item + "");
-            }
-
-        }
-
         return result;
     }
 

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/parameters_input"
+        style="@style/item_attribute_input"
+        android:layout_marginTop="20dp"
+        tools:hint="outer_id" />
+
+    <TextView
+        android:id="@+id/parameters_desc"
+        style="@style/item_attribute_desc"
+        tools:text="账号下全局唯一的 FaceSet 自定义标识，可以用来管理 FaceSet 对象。" />
+
+    <include layout="@layout/view_line" />
+</LinearLayout>

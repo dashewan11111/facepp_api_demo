@@ -126,6 +126,10 @@ public class FaceView extends FrameLayout {
         });
     }
 
+    public void setItemSelected(int index) {
+        this.faceRectPointView.setIndex(index);
+    }
+
     public void drawRect(List<RectF> rectList) {
         drawRect(rectList, 0);
     }
