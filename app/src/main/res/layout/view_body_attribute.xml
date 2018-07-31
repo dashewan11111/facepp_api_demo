@@ -10,10 +10,10 @@
 
         <TextView
             style="@style/item_attribute_text"
-            android:text="年         龄" />
+            android:text="性        别" />
 
         <TextView
-            android:id="@+id/attribute_age"
+            android:id="@+id/attribute_gender"
             style="@style/item_attribute_text2"
             tools:text="年龄年龄年龄年龄年龄年龄年龄年龄年" />
     </LinearLayout>

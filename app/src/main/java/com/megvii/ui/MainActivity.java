@@ -12,6 +12,7 @@ import android.webkit.WebViewClient;
 import android.widget.TextView;
 
 import com.megvii.ui.activity.ApiListActivity;
+import com.megvii.ui.datasource.ApiDataSource2;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -81,14 +82,29 @@ public class MainActivity extends XActivity {
             R.id.image
     })
     public void clickEvent(View view) {
+        Bundle bundle = new Bundle();
         switch (view.getId()) {
 
             case R.id.facepp:
-                ApiListActivity.launch(this);
+                bundle.putString("api_group", ApiDataSource2.ApiGroups.Face.getGroupName());
+                ApiListActivity.launch(this, bundle);
                 break;
 
             case R.id.humanbody:
-                Log.e("face++", "body");
+                bundle.putString("api_group", ApiDataSource2.ApiGroups.Body.getGroupName());
+                ApiListActivity.launch(this, bundle);
+                break;
+
+            case R.id.ocr:
+                bundle.putString("api_group", ApiDataSource2.ApiGroups.OCR.getGroupName());
+                ApiListActivity.launch(this, bundle);
+                break;
+
+            case R.id.image:
+                bundle.putString("api_group", ApiDataSource2.ApiGroups.Image.getGroupName());
+                ApiListActivity.launch(this, bundle);
+                break;
+            default:
                 break;
         }
     }

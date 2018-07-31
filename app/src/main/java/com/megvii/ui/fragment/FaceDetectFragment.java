@@ -27,7 +27,6 @@ public class FaceDetectFragment extends FaceActionFragment<FaceDetectPresenter> 
     @Override
     public void initData(Bundle savedInstanceState) {
         super.initData(savedInstanceState);
-        Log.e("leeeee", isAdded() + " , " + isDetached() + " , " + isHidden() + " , " + isInLayout() + " , " + isVisible());
     }
 
     @Override

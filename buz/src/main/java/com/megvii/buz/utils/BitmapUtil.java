@@ -250,8 +250,7 @@ public class BitmapUtil {
     }
 
     public static int computeSampleSize(BitmapFactory.Options options, int minSideLength, int maxNumOfPixels) {
-        int initialSize = computeInitialSampleSize(options, minSideLength,
-                maxNumOfPixels);
+        int initialSize = computeInitialSampleSize(options, minSideLength, maxNumOfPixels);
 
         int roundedSize;
         if (initialSize <= 8) {

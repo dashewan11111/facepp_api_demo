@@ -7,6 +7,7 @@ import android.graphics.RectF;
 import com.megvii.buz.utils.BitmapUtil;
 import com.megvii.facepp.api.bean.CommonRect;
 import com.megvii.facepp.api.bean.Face;
+import com.megvii.facepp.api.bean.HumanBody;
 import com.megvii.ui.fragment.FaceActionFragment;
 
 import java.util.ArrayList;
@@ -54,6 +55,50 @@ public abstract class BaseFaceActionPresenter<F extends FaceActionFragment> exte
                 for (Face face : faceList) {
                     // 裁剪小图
                     CommonRect commonRect = face.getFace_rectangle();
+                    Rect rect = new Rect(commonRect.getLeft(), commonRect.getTop(), commonRect.getLeft() + commonRect.getWidth(), commonRect.getTop() + commonRect.getHeight());
+                    bitmapList.add(BitmapUtil.cropBitmap(original.copy(Bitmap.Config.RGB_565, true), rect));
+                    // 人脸框
+                    RectF rectF = new RectF(rect);
+                    rectFList.add(rectF);
+                }
+                e.onNext(bitmapList);
+            }
+        }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<List<Bitmap>>() {
+            @Override
+            public void accept(final List<Bitmap> bitmaps) throws Exception {
+                onFaceCrop(bitmaps);
+                onFaceRect(rectFList);
+            }
+        });
+    }
+
+    /**
+     * 获取裁剪之后的小人体图
+     *
+     * @param bodyList
+     * @return
+     */
+    protected void getCropBodyList(final Bitmap original, final List<HumanBody> bodyList) {
+        if (null == bodyList || bodyList.size() == 0) {
+            return;
+        }
+        // 从左到右排序
+        Collections.sort(bodyList, new Comparator<HumanBody>() {
+            @Override
+            public int compare(HumanBody body1, HumanBody body2) {
+                return body1.getHumanbody_rectangle().getLeft() - body2.getHumanbody_rectangle().getLeft();
+            }
+        });
+
+        final List<RectF> rectFList = new ArrayList<>();
+        // 裁剪出小图，计算出人脸框
+        Observable.create(new ObservableOnSubscribe<List<Bitmap>>() {
+            @Override
+            public void subscribe(ObservableEmitter<List<Bitmap>> e) throws Exception {
+                List<Bitmap> bitmapList = new ArrayList<>();
+                for (HumanBody body : bodyList) {
+                    // 裁剪小图
+                    CommonRect commonRect = body.getHumanbody_rectangle();
                     Rect rect = new Rect(commonRect.getLeft(), commonRect.getTop(), commonRect.getLeft() + commonRect.getWidth(), commonRect.getTop() + commonRect.getHeight());
                     bitmapList.add(BitmapUtil.cropBitmap(original.copy(Bitmap.Config.RGB_565, true), rect));
                     // 人脸框

@@ -40,16 +40,14 @@ public class ApiListActivity extends XActivity {
 
     private void addFragment() {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        Bundle data = new Bundle();
-        data.putBundle("data", getIntent().getExtras());
-        transaction.replace(R.id.content, Fragment.instantiate(this, ApiListFragment.class.getName()), null);
+        transaction.replace(R.id.content, Fragment.instantiate(this, ApiListFragment.class.getName(), getIntent().getExtras()), null);
         transaction.commitNowAllowingStateLoss();
     }
 
-    public static void launch(Activity activity) {
+    public static void launch(Activity activity, Bundle bundle) {
         Router.newIntent(activity)
                 .to(ApiListActivity.class)
-                .data(new Bundle())
+                .data(bundle)
                 .launch();
     }
 

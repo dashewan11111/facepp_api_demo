@@ -3,7 +3,10 @@ package com.megvii.ui.view;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.PixelFormat;
 import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -71,8 +74,10 @@ public class FaceView extends FrameLayout {
                         layoutParams.width = viewWidth;
                         layoutParams.height = viewHeight;
                     }
+                    layoutParams.leftMargin = imageView.getLeft();
+                    layoutParams.topMargin = imageView.getTop();
                     faceRectPointView.setLayoutParams(layoutParams);
-                    faceRectPointView.setScale(viewWidth / (float) bmp.getWidth(), imageView.getLeft(), imageView.getTop() + toolbarHeight);
+                    faceRectPointView.setScale(viewWidth / (float) bmp.getWidth(), 0, 0);
                     try {
                         if (null != consumer) {
                             consumer.accept(bmp);
@@ -105,16 +110,22 @@ public class FaceView extends FrameLayout {
                     layoutParams.width = viewWidth;
                     layoutParams.height = viewHeight;
                 }
+                layoutParams.leftMargin = imageView.getLeft();
+                layoutParams.topMargin = imageView.getTop();
                 faceRectPointView.setLayoutParams(layoutParams);
 
                 BitmapFactory.Options options = new BitmapFactory.Options();
                 options.inJustDecodeBounds = true;
                 BitmapFactory.decodeResource(getResources(), resId, options);
-                options.inSampleSize = BitmapUtil.computeSampleSize(options, -1, viewWidth * viewHeight);
-                options.inJustDecodeBounds = false;
-                Bitmap bmp = BitmapFactory.decodeResource(getResources(), resId, options);
 
-                faceRectPointView.setScale(viewWidth / (float) bmp.getWidth(), imageView.getLeft(), imageView.getTop() + toolbarHeight);
+                Bitmap bmp = drawableToBitmap(getResources().getDrawable(resId), options);
+
+//                options.inSampleSize = BitmapUtil.computeSampleSize(options, -1, viewWidth * viewHeight);
+//                options.inJustDecodeBounds = false;
+//                Bitmap bmp = BitmapFactory.decodeResource(getResources(), resId, options);
+
+                float scale = viewWidth / (float) bmp.getWidth();
+                faceRectPointView.setScale(scale, 0, 0);
                 try {
                     if (null != consumer) {
                         consumer.accept(bmp);
@@ -124,6 +135,23 @@ public class FaceView extends FrameLayout {
                 }
             }
         });
+    }
+
+    public static Bitmap drawableToBitmap(Drawable drawable, BitmapFactory.Options options) {
+        // 取 drawable 的长宽
+        int w = options.outWidth;
+        int h = options.outHeight;
+
+        // 取 drawable 的颜色格式
+        Bitmap.Config config = Bitmap.Config.RGB_565;
+        // 建立对应 bitmap
+        Bitmap bitmap = Bitmap.createBitmap(w, h, config);
+        // 建立对应 bitmap 的画布
+        Canvas canvas = new Canvas(bitmap);
+        drawable.setBounds(0, 0, w, h);
+        // 把 drawable 内容画到画布中
+        drawable.draw(canvas);
+        return bitmap;
     }
 
     public void setItemSelected(int index) {

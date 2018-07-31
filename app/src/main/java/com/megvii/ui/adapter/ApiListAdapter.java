@@ -10,13 +10,9 @@ import android.widget.TextView;
 import com.megvii.ui.R;
 import com.megvii.ui.activity.ResultActivity;
 import com.megvii.ui.bean.ApiListItem;
-import com.megvii.ui.datasource.ApiDataSource;
-import com.megvii.ui.fragment.FaceCompareFragment;
-import com.megvii.ui.fragment.FaceGetDetailFragment;
-import com.megvii.ui.fragment.FaceSetAddFaceFragment;
-import com.megvii.ui.fragment.FaceSetDetailFragment;
-import com.megvii.ui.fragment.FaceSetRemoveFaceFragment;
-import com.megvii.ui.fragment.FaceSetUpdateFragment;
+import com.megvii.ui.datasource.ApiDataSource2;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,9 +26,12 @@ public class ApiListAdapter extends SimpleRecAdapter<ApiListItem, ApiListAdapter
 
     private Context context;
 
-    public ApiListAdapter(final Context context) {
+    private List<ApiDataSource2.ApiItem> apiList;
+
+    public ApiListAdapter(final Context context, List<ApiDataSource2.ApiItem> apiList) {
         super(context);
         this.context = context;
+        this.apiList = apiList;
     }
 
     @Override
@@ -47,12 +46,12 @@ public class ApiListAdapter extends SimpleRecAdapter<ApiListItem, ApiListAdapter
 
     @Override
     public int getItemCount() {
-        return ApiDataSource.values().length;
+        return apiList.size();
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        final ApiDataSource item = ApiDataSource.getApiByIndex(position);
+        final ApiDataSource2.ApiItem item = apiList.get(position);
         if (null == item) {
             return;
         }
@@ -62,25 +61,10 @@ public class ApiListAdapter extends SimpleRecAdapter<ApiListItem, ApiListAdapter
             @Override
             public void onClick(View v) {
                 ResultActivity.launch((Activity) context, item.getClassName(), item.getTitle(),
-                        getSubFragment(item.getIndex()));
+                        item.getSubFragment());
             }
         });
         holder.imgIcon.setImageResource(item.getResId());
-    }
-
-    private String getSubFragment(int index) {
-        switch (index) {
-            case 8:
-                return FaceSetAddFaceFragment.class.getName();
-            case 9:
-                return FaceSetRemoveFaceFragment.class.getName();
-            case 10:
-                return FaceSetUpdateFragment.class.getName();
-            case 11:
-                return FaceSetDetailFragment.class.getName();
-            default:
-                return "";
-        }
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {

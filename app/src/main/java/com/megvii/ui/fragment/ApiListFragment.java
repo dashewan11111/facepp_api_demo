@@ -1,10 +1,12 @@
 package com.megvii.ui.fragment;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 
 import com.megvii.ui.R;
 import com.megvii.ui.adapter.ApiListAdapter;
 import com.megvii.ui.bean.ApiListItem;
+import com.megvii.ui.datasource.ApiDataSource2;
 import com.megvii.ui.presenter.ApiListPresenter;
 
 import java.util.List;
@@ -27,7 +29,8 @@ public class ApiListFragment extends XLazyFragment<ApiListPresenter> {
     @Override
     public void initData(Bundle savedInstanceState) {
         recyclerView.verticalLayoutManager(context);
-        adapter = new ApiListAdapter(getActivity());
+        String apiGroup = getArguments().getString("api_group");
+        adapter = new ApiListAdapter(getActivity(), ApiDataSource2.ApiGroups.getApisByGroupName(apiGroup));
         recyclerView.setAdapter(adapter);
     }
 
