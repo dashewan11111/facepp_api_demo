@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/translucent_black_95"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout style="@style/item_attribute">
+
+            <TextView
+                style="@style/item_attribute_text"
+                android:layout_marginStart="-15dp"
+                android:text="正本"
+                android:textColor="@color/common_green_1"
+                android:textSize="16sp" />
+
+            <TextView
+                style="@style/item_attribute_text2"
+                tools:text="年龄年龄年龄年龄年龄年龄年龄年龄年" />
+        </LinearLayout>
+
+        <include layout="@layout/view_line" />
+
+        <LinearLayout style="@style/item_attribute">
+
+            <TextView
+                style="@style/item_attribute_text"
+                android:text="置信度" />
+
+            <TextView
+                android:id="@+id/attribute_confidence"
+                style="@style/item_attribute_text2"
+                tools:text="年龄年龄年龄年龄年龄年龄年龄年龄年" />
+        </LinearLayout>
+
+        <include layout="@layout/view_line" />
+
+        <LinearLayout style="@style/item_attribute">
+
+            <TextView
+                style="@style/item_attribute_text"
+                android:text="驾驶证号" />
+
+            <TextView
+                android:id="@+id/attribute_driver_num"
+                style="@style/item_attribute_text2"
+                tools:text="年龄年龄年龄年龄年龄年龄年龄年龄年" />
+        </LinearLayout>
+
+        <include layout="@layout/view_line" />
+
+        <LinearLayout style="@style/item_attribute">
+
+            <TextView
+                style="@style/item_attribute_text"
+                android:text="姓名" />
+
+            <TextView
+                android:id="@+id/attribute_name"
+                style="@style/item_attribute_text2"
+                tools:text="年龄年龄年龄年龄年龄年龄年龄年龄年" />
+        </LinearLayout>
+
+        <include layout="@layout/view_line" />
+
+        <LinearLayout style="@style/item_attribute">
+
+            <TextView
+                style="@style/item_attribute_text"
+                android:text="性别" />
+
+            <TextView
+                android:id="@+id/attribute_gender"
+                style="@style/item_attribute_text2"
+                tools:text="年龄年龄年龄年龄年龄年龄年龄年龄年" />
+        </LinearLayout>
+
+        <include layout="@layout/view_line" />
+
+
+        <LinearLayout style="@style/item_attribute">
+
+            <TextView
+                style="@style/item_attribute_text"
+                android:text="国籍" />
+
+            <TextView
+                android:id="@+id/attribute_nation"
+                style="@style/item_attribute_text2"
+                tools:text="年龄年龄年龄年龄年龄年龄年龄年龄年" />
+        </LinearLayout>
+
+        <include layout="@layout/view_line" />
+
+        <LinearLayout style="@style/item_attribute">
+
+            <TextView
+                style="@style/item_attribute_text"
+                android:text="住址" />
+
+            <TextView
+                android:id="@+id/attribute_address"
+                style="@style/item_attribute_text2"
+                tools:text="年龄年龄年龄年龄年龄年龄年龄年龄年" />
+        </LinearLayout>
+
+        <include layout="@layout/view_line" />
+
+        <LinearLayout style="@style/item_attribute">
+
+            <TextView
+                style="@style/item_attribute_text"
+                android:text="出生日期" />
+
+            <TextView
+                android:id="@+id/attribute_birth"
+                style="@style/item_attribute_text2"
+                tools:text="年龄年龄年龄年龄年龄年龄年龄年龄年" />
+        </LinearLayout>
+
+        <include layout="@layout/view_line" />
+
+        <LinearLayout style="@style/item_attribute">
+
+            <TextView
+                style="@style/item_attribute_text"
+                android:text="初次领证日期" />
+
+            <TextView
+                android:id="@+id/attribute_first"
+                style="@style/item_attribute_text2"
+                tools:text="年龄年龄年龄年龄年龄年龄年龄年龄年" />
+        </LinearLayout>
+
+        <include layout="@layout/view_line" />
+
+        <LinearLayout style="@style/item_attribute">
+
+            <TextView
+                style="@style/item_attribute_text"
+                android:text="签发机关" />
+
+            <TextView
+                android:id="@+id/attribute_sign"
+                style="@style/item_attribute_text2"
+                tools:text="年龄年龄年龄年龄年龄年龄年龄年龄年" />
+        </LinearLayout>
+
+        <include layout="@layout/view_line" />
+
+        <LinearLayout style="@style/item_attribute">
+
+            <TextView
+                style="@style/item_attribute_text"
+                android:text="准驾车型" />
+
+            <TextView
+                android:id="@+id/attribute_type"
+                style="@style/item_attribute_text2"
+                tools:text="年龄年龄年龄年龄年龄年龄年龄年龄年" />
+        </LinearLayout>
+
+        <include layout="@layout/view_line" />
+
+        <LinearLayout style="@style/item_attribute">
+
+            <TextView
+                style="@style/item_attribute_text"
+                android:text="有效期限" />
+
+            <TextView
+                android:id="@+id/attribute_validate"
+                style="@style/item_attribute_text2"
+                tools:text="年龄年龄年龄年龄年龄年龄年龄年龄年" />
+        </LinearLayout>
+
+        <include layout="@layout/view_line" />
+
+        <LinearLayout style="@style/item_attribute">
+
+            <TextView
+                style="@style/item_attribute_text"
+                android:text="驾驶证版本" />
+
+            <TextView
+                android:id="@+id/attribute_version"
+                style="@style/item_attribute_text2"
+                tools:text="年龄年龄年龄年龄年龄年龄年龄年龄年" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            style="@style/item_attribute"
+            android:layout_marginTop="25dp">
+
+            <TextView
+                style="@style/item_attribute_text"
+                android:layout_marginStart="-15dp"
+                android:text="副本"
+                android:textColor="@color/common_green_1"
+                android:textSize="16sp" />
+
+            <TextView style="@style/item_attribute_text2" />
+        </LinearLayout>
+
+        <include layout="@layout/view_line" />
+
+        <LinearLayout style="@style/item_attribute">
+
+            <TextView
+                style="@style/item_attribute_text"
+                android:text="置信度" />
+
+            <TextView
+                android:id="@+id/attribute_confidence_2"
+                style="@style/item_attribute_text2"
+                tools:text="年龄年龄年龄年龄年龄年龄年龄年龄年" />
+        </LinearLayout>
+
+        <include layout="@layout/view_line" />
+
+        <LinearLayout style="@style/item_attribute">
+
+            <TextView
+                style="@style/item_attribute_text"
+                android:text="姓名" />
+
+            <TextView
+                android:id="@+id/attribute_name_2"
+                style="@style/item_attribute_text2"
+                tools:text="年龄年龄年龄年龄年龄年龄年龄年龄年" />
+        </LinearLayout>
+
+        <include layout="@layout/view_line" />
+
+        <LinearLayout style="@style/item_attribute">
+
+            <TextView
+                style="@style/item_attribute_text"
+                android:text="驾驶证号" />
+
+            <TextView
+                android:id="@+id/attribute_driver_num_2"
+                style="@style/item_attribute_text2"
+                tools:text="年龄年龄年龄年龄年龄年龄年龄年龄年" />
+        </LinearLayout>
+
+        <include layout="@layout/view_line" />
+
+        <LinearLayout style="@style/item_attribute">
+
+            <TextView
+                style="@style/item_attribute_text"
+                android:text="档案编号" />
+
+            <TextView
+                android:id="@+id/attribute_doc_no"
+                style="@style/item_attribute_text2"
+                tools:text="年龄年龄年龄年龄年龄年龄年龄年龄年" />
+        </LinearLayout>
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

@@ -19,6 +19,10 @@ import com.megvii.ui.fragment.FaceSetRemoveFaceFragment;
 import com.megvii.ui.fragment.FaceSetUpdateFragment;
 import com.megvii.ui.fragment.FaceSetUserIdFragment;
 import com.megvii.ui.fragment.GestureFragment;
+import com.megvii.ui.fragment.OCRBankCardFragment;
+import com.megvii.ui.fragment.OCRDriverFragment;
+import com.megvii.ui.fragment.OCRIDCardFragment;
+import com.megvii.ui.fragment.OCRVehicleFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -176,9 +180,64 @@ public class ApiDataSource2 {
         BODY_APIS.add(GESTURE);
     }
 
+    private static final ApiItem OCR_ID_CARD = new ApiItem("cardpp/v1/ocridcard",
+            "身份证识别 -- OCR ID Card API",
+            "检测和识别中华人民共和国第二代身份证的关键字段内容，并支持返回身份证正反面信息、身份证照片分类判断结果。",
+            R.drawable.icon_id_card, OCRIDCardFragment.class.getName());
+
+    private static final ApiItem OCR_DRIVER = new ApiItem("cardpp/v2/ocrdriverlicense",
+            "驾照识别 -- OCR Driver License API (V2)",
+            "检测和识别中华人民共和国机动车驾驶证（以下称“驾照”）图像，并转化为结构化的文字信息。只可识别驾照正本(main sheet)正面和副本(second sheet)正面，一张照片最多可识别一个正本正面和一个副本正面。",
+            R.drawable.icon_driver, OCRDriverFragment.class.getName());
+
+    private static final ApiItem OCR_VEHICLE = new ApiItem("cardpp/v1/ocrvehiclelicense",
+            "行驶证识别 -- OCR Vehicle license API",
+            "检测和识别中华人民共和国机动车行驶证（以下称“行驶证”）图像为结构化的文字信息。目前只支持行驶证主页正面，不支持副页正面反面。",
+            R.drawable.icon_vehicle, OCRVehicleFragment.class.getName());
+
+    private static final ApiItem OCR_BANK_CARD = new ApiItem("cardpp/v1/ocrbankcard",
+            "银行卡识别 -- OCR Bank Card API (V1)",
+            "检测和识别各类银行卡，并返回银行卡卡片边框坐标、银行卡号码、所属银行及支持的金融组织服务。支持任意角度的识别。",
+            R.drawable.icon_bank, OCRBankCardFragment.class.getName());
+
+
     static final List<ApiItem> OCR_APIS = new ArrayList<>();
 
+    static {
+        OCR_APIS.add(OCR_ID_CARD);
+        OCR_APIS.add(OCR_DRIVER);
+        OCR_APIS.add(OCR_VEHICLE);
+        OCR_APIS.add(OCR_BANK_CARD);
+    }
+
+    private static final ApiItem IMAGE_SCENE = new ApiItem("imagepp/beta/detectsceneandobject",
+            "场景和物体识别 -- Detect Scene And Object API",
+            "进行图片分析，识别图片场景和图片主体。",
+            R.drawable.gesture, GestureFragment.class.getName());
+
+    private static final ApiItem IMAGE_TEXT = new ApiItem("imagepp/v1/recognizetext",
+            "文本识别 -- OCR ID Card API",
+            "进行图片分析，找出图片中出现的文字信息。",
+            R.drawable.gesture, GestureFragment.class.getName());
+
+    private static final ApiItem IMAGE_MERGE_FACE = new ApiItem("imagepp/v1/mergeface",
+            "人脸融合 -- Merge Face API (V1)",
+            "使用本 API，可以对模板图和融合图中的人脸进行融合操作。融合后的图片中将包含融合图中的人脸特征，以及模板图中的其他外貌特征与内容。",
+            R.drawable.gesture, GestureFragment.class.getName());
+
+    private static final ApiItem IMAGE_PLATE = new ApiItem("cardpp/v1/ocridcard",
+            "身份证识别 -- OCR ID Card API",
+            "调用者传入一张图片文件或图片URL，检测并返回图片中车牌框并识别车牌颜色和车牌号。当传入图片中有多个车牌时，按照车牌框大小排序依次输出。\n 注：当前版本不支持识别新能源车牌，正努力更新中。",
+            R.drawable.gesture, GestureFragment.class.getName());
+
     static final List<ApiItem> IMAGE_APIS = new ArrayList<>();
+
+    static {
+        IMAGE_APIS.add(IMAGE_SCENE);
+        IMAGE_APIS.add(IMAGE_TEXT);
+        IMAGE_APIS.add(IMAGE_MERGE_FACE);
+        IMAGE_APIS.add(IMAGE_PLATE);
+    }
 
     public enum ApiGroups {
         Face("face", FACE_APIS),
