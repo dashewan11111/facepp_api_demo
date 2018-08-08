@@ -19,6 +19,10 @@ import com.megvii.ui.fragment.FaceSetRemoveFaceFragment;
 import com.megvii.ui.fragment.FaceSetUpdateFragment;
 import com.megvii.ui.fragment.FaceSetUserIdFragment;
 import com.megvii.ui.fragment.GestureFragment;
+import com.megvii.ui.fragment.ImageLicensePlateFragment;
+import com.megvii.ui.fragment.ImageMergeFragment;
+import com.megvii.ui.fragment.ImageSceneFragment;
+import com.megvii.ui.fragment.ImageTextRecognizeFragment;
 import com.megvii.ui.fragment.OCRBankCardFragment;
 import com.megvii.ui.fragment.OCRDriverFragment;
 import com.megvii.ui.fragment.OCRIDCardFragment;
@@ -213,22 +217,22 @@ public class ApiDataSource2 {
     private static final ApiItem IMAGE_SCENE = new ApiItem("imagepp/beta/detectsceneandobject",
             "场景和物体识别 -- Detect Scene And Object API",
             "进行图片分析，识别图片场景和图片主体。",
-            R.drawable.gesture, GestureFragment.class.getName());
+            R.drawable.gesture, ImageSceneFragment.class.getName());
 
     private static final ApiItem IMAGE_TEXT = new ApiItem("imagepp/v1/recognizetext",
             "文本识别 -- OCR ID Card API",
             "进行图片分析，找出图片中出现的文字信息。",
-            R.drawable.gesture, GestureFragment.class.getName());
+            R.drawable.gesture, ImageTextRecognizeFragment.class.getName());
 
     private static final ApiItem IMAGE_MERGE_FACE = new ApiItem("imagepp/v1/mergeface",
             "人脸融合 -- Merge Face API (V1)",
             "使用本 API，可以对模板图和融合图中的人脸进行融合操作。融合后的图片中将包含融合图中的人脸特征，以及模板图中的其他外貌特征与内容。",
-            R.drawable.gesture, GestureFragment.class.getName());
+            R.drawable.gesture, ImageMergeFragment.class.getName());
 
-    private static final ApiItem IMAGE_PLATE = new ApiItem("cardpp/v1/ocridcard",
-            "身份证识别 -- OCR ID Card API",
-            "调用者传入一张图片文件或图片URL，检测并返回图片中车牌框并识别车牌颜色和车牌号。当传入图片中有多个车牌时，按照车牌框大小排序依次输出。\n 注：当前版本不支持识别新能源车牌，正努力更新中。",
-            R.drawable.gesture, GestureFragment.class.getName());
+    private static final ApiItem IMAGE_PLATE = new ApiItem("imagepp/v1/licenseplate",
+            "车牌识别 -- License Plate API (V1)",
+            "检测并返回图片中车牌框并识别车牌颜色和车牌号。当传入图片中有多个车牌时，按照车牌框大小排序依次输出。\n 注：当前版本不支持识别新能源车牌，正努力更新中。",
+            R.drawable.gesture, ImageLicensePlateFragment.class.getName());
 
     static final List<ApiItem> IMAGE_APIS = new ArrayList<>();
 

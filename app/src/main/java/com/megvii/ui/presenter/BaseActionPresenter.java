@@ -11,7 +11,7 @@ import cn.droidlover.xdroidmvp.mvp.XPresent;
 public abstract class BaseActionPresenter<F extends BaseActionFragment> extends XPresent<F> {
 
     // TODO 存储
-    protected FacePPApi faceppApi = new FacePPApi("Kx_DXTvQeTR1UJCASVyOweuJSLBN2Yno", "6T431Rj_cFg8u_yrbbw3BKZVP2PwE0gU");
+    protected FacePPApi faceppApi = new FacePPApi("syAe75QXfQHDt9YcmC8BJAJD0mX5nwqJ", "Q23rhNN6TsA8A6TcTOHkBsu-a7hBOUEB");
 
     public abstract void doAction(Object... params);
 }

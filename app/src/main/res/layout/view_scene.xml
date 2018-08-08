@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/translucent_black_95"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout style="@style/item_attribute">
+
+            <TextView
+                style="@style/item_attribute_text"
+                android:text="场景" />
+
+            <TextView
+                android:id="@+id/scene"
+                style="@style/item_attribute_text2"
+                tools:text="年龄年龄年龄年龄年龄年龄年龄年龄年" />
+        </LinearLayout>
+
+        <include layout="@layout/view_line" />
+
+        <LinearLayout style="@style/item_attribute">
+
+            <TextView
+                style="@style/item_attribute_text"
+                android:text="物体" />
+
+            <TextView
+                android:id="@+id/objects"
+                style="@style/item_attribute_text2"
+                tools:text="年龄年龄年龄年龄年龄年龄年龄年龄年" />
+        </LinearLayout>
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>
