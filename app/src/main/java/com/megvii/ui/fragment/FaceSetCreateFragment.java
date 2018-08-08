@@ -43,6 +43,7 @@ public class FaceSetCreateFragment extends BaseActionFragment<FaceSetCreatePrese
         recyclerView.addFooterView(txtResult);
         adapter = new ParametersAdapter(context, ParametersConstant.FACE_SET_CREATE, null);
         recyclerView.setAdapter(adapter);
+        recyclerView.setNestedScrollingEnabled(false);
     }
 
     @OnClick(R.id.create_face_set)
