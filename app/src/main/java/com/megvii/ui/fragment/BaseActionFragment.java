@@ -16,9 +16,6 @@ import cn.droidlover.xdroidmvp.mvp.XFragment;
 
 public abstract class BaseActionFragment<P extends BaseActionPresenter> extends XFragment<P> {
 
-    static final int PHOTO_REQUEST_CODE = 0x10;
-    static final int CAMERA_REQUEST_CODE = 0x20;
-
     protected ProgressDialogHelper dialogHelper;
 
     protected ImageChooseHelper imageChooseHelper;

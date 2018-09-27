@@ -6,7 +6,10 @@ import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Matrix;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.media.ExifInterface;
 import android.net.Uri;
@@ -770,6 +773,36 @@ public class BitmapUtil {
 
         // 保存修复后的图片并返回保存后的图片路径
         return rotaingImageView(angle, bmp);
+    }
+
+    /**
+     * 图片合成
+     *
+     * @param background 背景图
+     * @param people     目标图
+     * @return
+     */
+    public static Bitmap combine(Bitmap background, Bitmap people) {
+
+        // 防止出现Immutable bitmap passed to Canvas constructor错误
+        Bitmap newBitmap = Bitmap.createBitmap(background);
+
+        Canvas canvas = new Canvas(newBitmap);
+        Paint paint = new Paint();
+
+        int w = background.getWidth();
+        int h = background.getHeight();
+        int w_2 = people.getWidth();
+        int h_2 = people.getHeight();
+        paint.setAlpha(0);
+        canvas.drawRect(0, 0, background.getWidth(), background.getHeight(), paint);
+
+        paint = new Paint();
+        canvas.drawBitmap(people, Math.abs(w - w_2) / 2, Math.abs(h - h_2) / 2, paint);
+        canvas.save(Canvas.ALL_SAVE_FLAG);
+        // 存储新合成的图片
+        canvas.restore();
+        return newBitmap;
     }
 
 }

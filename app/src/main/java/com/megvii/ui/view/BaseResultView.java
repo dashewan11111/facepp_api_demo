@@ -39,7 +39,7 @@ public abstract class BaseResultView<D> extends LinearLayout implements IResultV
         View rootView = LayoutInflater.from(context).inflate(R.layout.view_result_base, this);
         resultViewContainer = rootView.findViewById(R.id.result_view_container);
 
-        resultViewContainer.addView(getSubView(context));
+         resultViewContainer.addView(getSubView(context));
     }
 
     public abstract View getSubView(Context context);
