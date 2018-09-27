@@ -15,6 +15,7 @@ import com.megvii.ui.R;
 import com.megvii.ui.adapter.ParametersAdapter;
 import com.megvii.ui.datasource.ParametersConstant;
 import com.megvii.ui.presenter.FaceSetAddFacePresenter;
+import com.megvii.ui.utils.ImageChooseHelper;
 
 import java.io.IOException;
 
@@ -55,7 +56,7 @@ public class FaceSetAddFaceFragment extends BaseActionFragment<FaceSetAddFacePre
 
     @OnClick(R.id.get_face_token)
     public void getFaceToken(View view) {
-        showFileChooseDialog();
+        imageChooseHelper.chooseImage();
     }
 
     @Override
@@ -71,7 +72,7 @@ public class FaceSetAddFaceFragment extends BaseActionFragment<FaceSetAddFacePre
         if (getArguments().getBoolean("search")) {
             Bundle bundle = new Bundle();
             bundle.putString(ParametersConstant.FACESET_TOKEN.getKey(), adapter.getParametersList().get(ParametersConstant.FACESET_TOKEN.getKey()));
-            ((FaceSearchFragment2) getParentFragment()).switchFragment("第三步：选择目标，进行检测", FaceSetFinalFragment.class.getName(), bundle);
+            ((FaceSearchFragment2) getParentFragment()).switchFragment("第三步：选择目标，进行检索", FaceSetFinalFragment.class.getName(), bundle);
         }
     }
 
@@ -80,12 +81,7 @@ public class FaceSetAddFaceFragment extends BaseActionFragment<FaceSetAddFacePre
         super.onFailed(error);
     }
 
-    protected void showFileChooseDialog() {
-        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(intent, PHOTO_REQUEST_CODE);
-    }
-
-    public void onFileChoose(Bitmap bitmap) {
+    public void refreshUI(Bitmap bitmap) {
         dialogHelper.showAtProgress();
         getP().detect(BitmapUtil.toByteArray(bitmap));
     }
@@ -110,33 +106,12 @@ public class FaceSetAddFaceFragment extends BaseActionFragment<FaceSetAddFacePre
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case PHOTO_REQUEST_CODE:
-                if (resultCode == RESULT_OK) {
-                    Uri uri = data.getData();
-                    //通过uri的方式返回，部分手机uri可能为空
-                    if (uri != null) {
-                        try {
-                            //通过uri获取到bitmap对象
-                            Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), uri);
-                            onFileChoose(bitmap);
-
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-
-                    } else {
-                        //部分手机可能直接存放在bundle中
-                        Bundle bundleExtras = data.getExtras();
-                        if (bundleExtras != null) {
-                            Bitmap bitmaps = bundleExtras.getParcelable("data");
-                            onFileChoose(bitmaps);
-                            // scrollView.smoothScrollTo(0, 0);
-                        }
-                    }
-                }
-                break;
-        }
+        imageChooseHelper.doOnActivityResult(requestCode, resultCode, data, new ImageChooseHelper.OnFileChooseListener() {
+            @Override
+            public void onFileChoose(Bitmap bitmap) {
+                refreshUI(bitmap);
+            }
+        });
     }
 
     @Override

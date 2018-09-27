@@ -166,7 +166,7 @@ public class ApiDataSource2 {
             "检测图片内的所有人体，并且支持对检测到的人体直接进行分析，获得每个人体的各类属性信息。",
             R.drawable.body_detect, BodyDetectFragment.class.getName());
 
-    private static final ApiItem BODY_SEGMENT = new ApiItem("humanbodypp/v1/segment",
+    private static final ApiItem BODY_SEGMENT = new ApiItem("humanbodypp/v2/segment",
             "人形抠像 -- HumanBody Segment API",
             "识别传入图片中人体的完整轮廓，进行人形抠像.",
             R.drawable.body_detect, BodySegmentFragment.class.getName());

@@ -34,12 +34,12 @@ public class ParametersConstant {
             "是否检测并返回人脸关键点",
             new Bean[]{
                     new Bean("0", "不检测"),
-                    new Bean("1", "检测。返回 83 个人脸关键点。"),
-                    new Bean("2", "检测。返回 106 个人脸关键点。"),
+                    new Bean("1", "返回 83 个人脸关键点"),
+                    new Bean("2", "返回 106 个人脸关键点"),
             }, R.layout.view_parameters_single_choice);
 
     public static final IParameters RETURN_ATTRIBUTES = new FaceParameters("return_attributes",
-            "none",
+            "age,gender",
             "希望检测并返回的属性。",
             new Bean[]{
                     new Bean("none", "不检测属性"),
@@ -55,7 +55,7 @@ public class ParametersConstant {
                     new Bean("beauty", "颜值"),
                     new Bean("mouthstatus", "嘴部状态"),
                     new Bean("eyegaze", "眼球位置与视线方向"),
-                    new Bean("skinstatus", "面部特征识别"),
+                    new Bean("skinstatus", "皮肤状态"),
             }, R.layout.view_parameters_multi_choice);
 
 
@@ -190,6 +190,7 @@ public class ParametersConstant {
 
     static {
         FACE_ANALYZE.add(FACE_TOKENS);
+        FACE_ANALYZE.add(RETURN_LANDMARK);
         FACE_ANALYZE.add(RETURN_ATTRIBUTES);
     }
 

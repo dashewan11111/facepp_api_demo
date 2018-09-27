@@ -64,7 +64,7 @@ public class ParametersMultiChoiceView extends BaseParametersView {
             checkBox.setTextColor(getResources().getColor(R.color.translucent_black_05));
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams((width - XUtils.dip2px(context, 60)) / 2, XUtils.dip2px(context, 50));
             checkBox.setLayoutParams(layoutParams);
-            checkBox.setChecked(parameters.getValue().equals(bean.getValue()));
+            checkBox.setChecked(parameters.getValue().contains(bean.getValue()));
             checkBox.setText(bean.getDesc());
 
             checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

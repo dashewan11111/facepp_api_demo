@@ -1,16 +1,18 @@
 package com.megvii.ui;
 
+import android.graphics.Point;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.megvii.buz.utils.XUtils;
 import com.megvii.ui.activity.ApiListActivity;
 import com.megvii.ui.datasource.ApiDataSource2;
 
@@ -40,7 +42,7 @@ public class MainActivity extends XActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setHomeButtonEnabled(false);
         txtCenterTitle.setVisibility(View.VISIBLE);
-        txtCenterTitle.setText("Face++ Api");
+        txtCenterTitle.setText(R.string.title_main);
     }
 
     private void initVideoView() {
@@ -58,20 +60,21 @@ public class MainActivity extends XActivity {
         videoView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
         videoView.getSettings().setAppCacheEnabled(true);
 
+        // 按 16：9 设置宽高
+        Point size = XUtils.getScreenWidthAndHeight(this);
+        videoView.setLayoutParams(new RelativeLayout.LayoutParams(size.x, size.x * 9 / 16));
         videoView.loadUrl("file:///android_asset/video.html");
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        //videoView.onResume();
         playVideo();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-//        videoView.onPause();
         pauseVideo();
     }
 

@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.megvii.buz.utils.BitmapUtil;
 import com.megvii.ui.R;
 import com.megvii.ui.presenter.FaceBeautyPresenter;
+import com.megvii.ui.utils.ImageChooseHelper;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -58,44 +59,18 @@ public class FaceBeautyFragment extends BaseActionFragment<FaceBeautyPresenter> 
 
     @OnClick(R.id.btn_choose_file)
     public void chooseFile(View view) {
-        showFileChooseDialog();
-    }
-
-    protected void showFileChooseDialog() {
-        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(intent, PHOTO_REQUEST_CODE);
+        imageChooseHelper.chooseImage();
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case PHOTO_REQUEST_CODE:
-                if (resultCode == RESULT_OK) {
-                    Uri uri = data.getData();
-                    //通过uri的方式返回，部分手机uri可能为空
-                    if (uri != null) {
-                        try {
-                            //通过uri获取到bitmap对象
-                            Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), uri);
-                            doAction(bitmap);
-
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-
-                    } else {
-                        //部分手机可能直接存放在bundle中
-                        Bundle bundleExtras = data.getExtras();
-                        if (bundleExtras != null) {
-                            Bitmap bitmaps = bundleExtras.getParcelable("data");
-                            doAction(bitmaps);
-                            // scrollView.smoothScrollTo(0, 0);
-                        }
-                    }
-                }
-                break;
-        }
+        imageChooseHelper.doOnActivityResult(requestCode, resultCode, data, new ImageChooseHelper.OnFileChooseListener() {
+            @Override
+            public void onFileChoose(Bitmap bitmap) {
+                doAction(bitmap);
+            }
+        });
     }
 
     @Override

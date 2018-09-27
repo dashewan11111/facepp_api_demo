@@ -40,16 +40,19 @@ public class FaceDetectFragment extends FaceActionFragment<FaceDetectPresenter> 
 
     public void onSuccess(final List<Face> faces) {
         super.onSuccess();
-        this.faces = faces;
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                resultContainer.removeAllViews();
-                attributeView = new FaceDetectAttributeView(context);
-                attributeView.refresh(faces.get(0));
-                resultContainer.addView(attributeView);
-            }
-        });
+
+        if (null != faces && faces.size() > 0) {
+            this.faces = faces;
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    resultContainer.removeAllViews();
+                    attributeView = new FaceDetectAttributeView(context);
+                    attributeView.refresh(faces.get(0));
+                    resultContainer.addView(attributeView);
+                }
+            });
+        }
     }
 
     @Override

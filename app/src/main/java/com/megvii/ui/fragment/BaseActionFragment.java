@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import com.megvii.buz.view.loading.ProgressDialogHelper;
 import com.megvii.ui.presenter.BaseActionPresenter;
+import com.megvii.ui.utils.ImageChooseHelper;
 
 import cn.droidlover.xdroidmvp.mvp.XFragment;
 
@@ -16,12 +17,16 @@ import cn.droidlover.xdroidmvp.mvp.XFragment;
 public abstract class BaseActionFragment<P extends BaseActionPresenter> extends XFragment<P> {
 
     static final int PHOTO_REQUEST_CODE = 0x10;
+    static final int CAMERA_REQUEST_CODE = 0x20;
 
     protected ProgressDialogHelper dialogHelper;
+
+    protected ImageChooseHelper imageChooseHelper;
 
     @Override
     public void initData(Bundle savedInstanceState) {
         dialogHelper = new ProgressDialogHelper(getActivity());
+        imageChooseHelper = new ImageChooseHelper(this);
     }
 
     abstract int sampleResId();

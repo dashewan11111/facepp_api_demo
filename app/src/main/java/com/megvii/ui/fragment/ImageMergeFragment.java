@@ -3,9 +3,7 @@ package com.megvii.ui.fragment;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -13,20 +11,21 @@ import android.widget.ImageView;
 import com.megvii.buz.utils.BitmapUtil;
 import com.megvii.ui.R;
 import com.megvii.ui.presenter.ImageMergePresenter;
+import com.megvii.ui.utils.ImageChooseHelper;
 
-import java.io.IOException;
 import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-
-import static android.app.Activity.RESULT_OK;
 
 /**
  * @author by licheng on 2018/7/13.
  */
 
 public class ImageMergeFragment extends BaseActionFragment<ImageMergePresenter> {
+
+    private static final int ACTION_1 = 1;
+    private static final int ACTION_2 = 2;
 
     @BindView(R.id.image_1)
     ImageView image1;
@@ -61,14 +60,14 @@ public class ImageMergeFragment extends BaseActionFragment<ImageMergePresenter> 
 
     @OnClick(R.id.btn_choose_file_1)
     public void chooseFile1(View view) {
-        actionId = 1;
-        showFileChooseDialog(actionId);
+        actionId = ACTION_1;
+        imageChooseHelper.chooseImage();
     }
 
     @OnClick(R.id.btn_choose_file_2)
     public void chooseFile2(View view) {
-        actionId = 2;
-        showFileChooseDialog(actionId);
+        actionId = ACTION_2;
+        imageChooseHelper.chooseImage();
     }
 
     @Override
@@ -92,53 +91,20 @@ public class ImageMergeFragment extends BaseActionFragment<ImageMergePresenter> 
         }
     }
 
-
-    protected void showFileChooseDialog(int actionId) {
-        this.actionId = actionId;
-        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(intent, PHOTO_REQUEST_CODE);
-    }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case PHOTO_REQUEST_CODE:
-                if (resultCode == RESULT_OK) {
-                    Uri uri = data.getData();
-                    //通过uri的方式返回，部分手机uri可能为空
-                    if (uri != null) {
-                        try {
-                            //通过uri获取到bitmap对象
-                            Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), uri);
-                            if (1 == actionId) {
-                                bmp1 = bitmap;
-                            } else if (2 == actionId) {
-                                bmp2 = bitmap;
-                            }
-                            doAction(bmp1, bmp2);
-
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-
-                    } else {
-                        //部分手机可能直接存放在bundle中
-                        Bundle bundleExtras = data.getExtras();
-                        if (bundleExtras != null) {
-                            Bitmap bitmap = bundleExtras.getParcelable("data");
-                            if (1 == actionId) {
-                                bmp1 = bitmap;
-                            } else if (2 == actionId) {
-                                bmp2 = bitmap;
-                            }
-                            doAction(bmp1, bmp2);
-                            // scrollView.smoothScrollTo(0, 0);
-                        }
-                    }
+        imageChooseHelper.doOnActivityResult(requestCode, resultCode, data, new ImageChooseHelper.OnFileChooseListener() {
+            @Override
+            public void onFileChoose(Bitmap bitmap) {
+                if (ACTION_1 == actionId) {
+                    bmp1 = bitmap;
+                } else if (ACTION_2 == actionId) {
+                    bmp2 = bitmap;
                 }
-                break;
-        }
+                doAction(bmp1, bmp2);
+            }
+        });
     }
 
     public void onSuccess(final String response) {

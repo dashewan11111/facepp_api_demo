@@ -14,6 +14,7 @@ import com.megvii.buz.utils.BitmapUtil;
 import com.megvii.ui.R;
 import com.megvii.ui.bean.RatingBean;
 import com.megvii.ui.presenter.FaceComparePresenter;
+import com.megvii.ui.utils.ImageChooseHelper;
 import com.megvii.ui.view.CommonRatingView;
 
 import java.io.IOException;
@@ -30,6 +31,9 @@ import static android.app.Activity.RESULT_OK;
 
 public class FaceCompareFragment extends BaseActionFragment<FaceComparePresenter> {
 
+    private static final int ACTION_1 = 1;
+    private static final int ACTION_2 = 2;
+
     @BindView(R.id.image_1)
     ImageView image1;
 
@@ -44,7 +48,6 @@ public class FaceCompareFragment extends BaseActionFragment<FaceComparePresenter
 
     @BindView(R.id.btn_choose_file_2)
     Button btnChooseFile2;
-
 
     Bitmap bmp1, bmp2;
 
@@ -64,14 +67,14 @@ public class FaceCompareFragment extends BaseActionFragment<FaceComparePresenter
 
     @OnClick(R.id.btn_choose_file_1)
     public void chooseFile1(View view) {
-        actionId = 1;
-        showFileChooseDialog(actionId);
+        actionId = ACTION_1;
+        imageChooseHelper.chooseImage();
     }
 
     @OnClick(R.id.btn_choose_file_2)
     public void chooseFile2(View view) {
-        actionId = 2;
-        showFileChooseDialog(actionId);
+        actionId = ACTION_2;
+        imageChooseHelper.chooseImage();
     }
 
     @Override
@@ -95,53 +98,20 @@ public class FaceCompareFragment extends BaseActionFragment<FaceComparePresenter
         }
     }
 
-
-    protected void showFileChooseDialog(int actionId) {
-        this.actionId = actionId;
-        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(intent, PHOTO_REQUEST_CODE);
-    }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case PHOTO_REQUEST_CODE:
-                if (resultCode == RESULT_OK) {
-                    Uri uri = data.getData();
-                    //通过uri的方式返回，部分手机uri可能为空
-                    if (uri != null) {
-                        try {
-                            //通过uri获取到bitmap对象
-                            Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), uri);
-                            if (1 == actionId) {
-                                bmp1 = bitmap;
-                            } else if (2 == actionId) {
-                                bmp2 = bitmap;
-                            }
-                            doAction(bmp1, bmp2);
-
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-
-                    } else {
-                        //部分手机可能直接存放在bundle中
-                        Bundle bundleExtras = data.getExtras();
-                        if (bundleExtras != null) {
-                            Bitmap bitmap = bundleExtras.getParcelable("data");
-                            if (1 == actionId) {
-                                bmp1 = bitmap;
-                            } else if (2 == actionId) {
-                                bmp2 = bitmap;
-                            }
-                            doAction(bmp1, bmp2);
-                            // scrollView.smoothScrollTo(0, 0);
-                        }
-                    }
+        imageChooseHelper.doOnActivityResult(requestCode, resultCode, data, new ImageChooseHelper.OnFileChooseListener() {
+            @Override
+            public void onFileChoose(Bitmap bitmap) {
+                if (ACTION_1 == actionId) {
+                    bmp1 = bitmap;
+                } else if (ACTION_2 == actionId) {
+                    bmp2 = bitmap;
                 }
-                break;
-        }
+                doAction(bmp1, bmp2);
+            }
+        });
     }
 
 
