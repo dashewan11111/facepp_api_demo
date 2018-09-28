@@ -33,16 +33,15 @@
 
     </LinearLayout>
 
-
     <Button
-        android:id="@+id/choose_file"
+        android:id="@+id/btn_task_query"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="20dp"
         android:layout_marginStart="20dp"
         android:background="@drawable/common_round_blue"
-        android:text="选择图片" />
+        android:text="查询Task状态" />
 
 
 </RelativeLayout>

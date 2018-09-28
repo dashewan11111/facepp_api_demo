@@ -162,6 +162,13 @@ public class ParametersConstant {
 
             }, R.layout.view_parameters_input);
 
+    public static final IParameters TASK_ID = new FaceParameters("task_id",
+            "",
+            "异步任务的唯一标识",
+            new Bean[]{
+
+            }, R.layout.view_parameters_input);
+
     public static final List<IParameters> FACE_SET_CREATE = new ArrayList<>();
 
     static {
@@ -222,5 +229,14 @@ public class ParametersConstant {
         FACE_SET_UPDATE.add(DISPLAY_NAME);
         FACE_SET_UPDATE.add(USER_DATA);
         FACE_SET_UPDATE.add(TAGS);
+    }
+
+    /**
+     * 查看异步任务状态
+     */
+    public static final List<IParameters> FACE_TASK_QUERY = new ArrayList<>();
+
+    static {
+        FACE_TASK_QUERY.add(TASK_ID);
     }
 }

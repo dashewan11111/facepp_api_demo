@@ -12,10 +12,12 @@ import com.megvii.ui.fragment.FaceDetectFragment;
 import com.megvii.ui.fragment.FaceGetDetailFragment;
 import com.megvii.ui.fragment.FaceSearchFragment2;
 import com.megvii.ui.fragment.FaceSetAddFaceFragment;
+import com.megvii.ui.fragment.FaceSetAddFaceFragmentAsync;
 import com.megvii.ui.fragment.FaceSetCreateFragment;
 import com.megvii.ui.fragment.FaceSetDetailFragment;
 import com.megvii.ui.fragment.FaceSetGroupFragment;
 import com.megvii.ui.fragment.FaceSetRemoveFaceFragment;
+import com.megvii.ui.fragment.FaceSetRemoveFaceFragmentAsync;
 import com.megvii.ui.fragment.FaceSetUpdateFragment;
 import com.megvii.ui.fragment.FaceSetUserIdFragment;
 import com.megvii.ui.fragment.GestureFragment;
@@ -27,6 +29,7 @@ import com.megvii.ui.fragment.OCRBankCardFragment;
 import com.megvii.ui.fragment.OCRDriverFragment;
 import com.megvii.ui.fragment.OCRIDCardFragment;
 import com.megvii.ui.fragment.OCRVehicleFragment;
+import com.megvii.ui.fragment.TaskQueryFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +38,7 @@ import java.util.List;
  * @author by licheng on 2018/7/6.
  */
 
-public class ApiDataSource2 {
+public class ApiDataSource {
 
     public static class ApiItem {
 
@@ -120,12 +123,26 @@ public class ApiDataSource2 {
             FaceSetGroupFragment.class.getName(),
             FaceSetAddFaceFragment.class.getName());
 
+    private static final ApiItem FACESET_ADD_FAC_ASYNC = new ApiItem("faceset/async/addface",
+            "添加人脸到人脸库（异步）-- FaceSet AddFace API",
+            "大批量的并发操作情况下，推荐使用异步",
+            R.drawable.face_detect,
+            FaceSetGroupFragment.class.getName(),
+            FaceSetAddFaceFragmentAsync.class.getName());
+
     private static final ApiItem FACESET_REMOVE_FACE = new ApiItem("faceset/removeface",
             "从人脸库删除人脸 -- FaceSet RemoveFace API",
             "移除一个FaceSet中的某些或者全部face_token。",
             R.drawable.face_detect,
             FaceSetGroupFragment.class.getName(),
             FaceSetRemoveFaceFragment.class.getName());
+
+    private static final ApiItem FACESET_REMOVE_FACE_ASYNC = new ApiItem("faceset/async/removeface",
+            "从人脸库删除人脸（异步） -- FaceSet RemoveFace API",
+            "大批量的并发操作情况下，推荐使用异步",
+            R.drawable.face_detect,
+            FaceSetGroupFragment.class.getName(),
+            FaceSetRemoveFaceFragmentAsync.class.getName());
 
     private static final ApiItem FACESET_UPDATE = new ApiItem(
             "faceset/update",
@@ -143,6 +160,11 @@ public class ApiDataSource2 {
             FaceSetGroupFragment.class.getName(),
             FaceSetDetailFragment.class.getName());
 
+    private static final ApiItem FACESET_TASK_STATUS = new ApiItem("faceset/async/task_status",
+            "查看异步任务状态 -- FaceSet FaceTaskQuery API",
+            "查询之前调用的异步添加/删除人脸请求，异步任务当前的状态",
+            R.drawable.face_detect,
+            TaskQueryFragment.class.getName());
 
     static final List<ApiItem> FACE_APIS = new ArrayList<>();
 
@@ -156,9 +178,12 @@ public class ApiDataSource2 {
         FACE_APIS.add(FACE_SET_USER_ID);
         FACE_APIS.add(FACESET_CREATE);
         FACE_APIS.add(FACESET_ADD_FACE);
+        FACE_APIS.add(FACESET_ADD_FAC_ASYNC);
         FACE_APIS.add(FACESET_REMOVE_FACE);
+        FACE_APIS.add(FACESET_REMOVE_FACE_ASYNC);
         FACE_APIS.add(FACESET_UPDATE);
         FACE_APIS.add(FACESET_GET_DETAIL);
+        FACE_APIS.add(FACESET_TASK_STATUS);
     }
 
     private static final ApiItem BODY_DETECT = new ApiItem("humanbodypp/v1/detect",

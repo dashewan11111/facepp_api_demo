@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.megvii.ui.R;
 import com.megvii.ui.activity.ResultActivity;
 import com.megvii.ui.bean.ApiListItem;
-import com.megvii.ui.datasource.ApiDataSource2;
+import com.megvii.ui.datasource.ApiDataSource;
 
 import java.util.List;
 
@@ -26,9 +26,9 @@ public class ApiListAdapter extends SimpleRecAdapter<ApiListItem, ApiListAdapter
 
     private Context context;
 
-    private List<ApiDataSource2.ApiItem> apiList;
+    private List<ApiDataSource.ApiItem> apiList;
 
-    public ApiListAdapter(final Context context, List<ApiDataSource2.ApiItem> apiList) {
+    public ApiListAdapter(final Context context, List<ApiDataSource.ApiItem> apiList) {
         super(context);
         this.context = context;
         this.apiList = apiList;
@@ -51,7 +51,7 @@ public class ApiListAdapter extends SimpleRecAdapter<ApiListItem, ApiListAdapter
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        final ApiDataSource2.ApiItem item = apiList.get(position);
+        final ApiDataSource.ApiItem item = apiList.get(position);
         if (null == item) {
             return;
         }

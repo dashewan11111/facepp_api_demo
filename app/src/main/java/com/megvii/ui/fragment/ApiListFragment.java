@@ -1,15 +1,11 @@
 package com.megvii.ui.fragment;
 
 import android.os.Bundle;
-import android.text.TextUtils;
 
 import com.megvii.ui.R;
 import com.megvii.ui.adapter.ApiListAdapter;
-import com.megvii.ui.bean.ApiListItem;
-import com.megvii.ui.datasource.ApiDataSource2;
+import com.megvii.ui.datasource.ApiDataSource;
 import com.megvii.ui.presenter.ApiListPresenter;
-
-import java.util.List;
 
 import butterknife.BindView;
 import cn.droidlover.xdroidmvp.mvp.XLazyFragment;
@@ -30,7 +26,7 @@ public class ApiListFragment extends XLazyFragment<ApiListPresenter> {
     public void initData(Bundle savedInstanceState) {
         recyclerView.verticalLayoutManager(context);
         String apiGroup = getArguments().getString("api_group");
-        adapter = new ApiListAdapter(getActivity(), ApiDataSource2.ApiGroups.getApisByGroupName(apiGroup));
+        adapter = new ApiListAdapter(getActivity(), ApiDataSource.ApiGroups.getApisByGroupName(apiGroup));
         recyclerView.setAdapter(adapter);
     }
 

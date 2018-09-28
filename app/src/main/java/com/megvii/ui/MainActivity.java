@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.megvii.buz.utils.XUtils;
 import com.megvii.ui.activity.ApiListActivity;
-import com.megvii.ui.datasource.ApiDataSource2;
+import com.megvii.ui.datasource.ApiDataSource;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -89,22 +89,22 @@ public class MainActivity extends XActivity {
         switch (view.getId()) {
 
             case R.id.facepp:
-                bundle.putString("api_group", ApiDataSource2.ApiGroups.Face.getGroupName());
+                bundle.putString("api_group", ApiDataSource.ApiGroups.Face.getGroupName());
                 ApiListActivity.launch(this, bundle);
                 break;
 
             case R.id.humanbody:
-                bundle.putString("api_group", ApiDataSource2.ApiGroups.Body.getGroupName());
+                bundle.putString("api_group", ApiDataSource.ApiGroups.Body.getGroupName());
                 ApiListActivity.launch(this, bundle);
                 break;
 
             case R.id.ocr:
-                bundle.putString("api_group", ApiDataSource2.ApiGroups.OCR.getGroupName());
+                bundle.putString("api_group", ApiDataSource.ApiGroups.OCR.getGroupName());
                 ApiListActivity.launch(this, bundle);
                 break;
 
             case R.id.image:
-                bundle.putString("api_group", ApiDataSource2.ApiGroups.Image.getGroupName());
+                bundle.putString("api_group", ApiDataSource.ApiGroups.Image.getGroupName());
                 ApiListActivity.launch(this, bundle);
                 break;
             default:
