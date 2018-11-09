@@ -7,7 +7,6 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Rect;
@@ -122,7 +121,7 @@ public class BitmapUtil {
     }
 
     public static File saveBitmapFile(Bitmap bitmap) {
-        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/temp.jpg");//将要保存图片的路径
+        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/_" + System.currentTimeMillis() + ".jpg");//将要保存图片的路径
         try {
             BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file));
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos);

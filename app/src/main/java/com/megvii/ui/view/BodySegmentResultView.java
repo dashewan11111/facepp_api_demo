@@ -2,6 +2,7 @@ package com.megvii.ui.view;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -52,7 +53,7 @@ public class BodySegmentResultView extends BaseResultView<HumanSegmentResponse> 
      * 换背景
      */
     public void combine(Bitmap background) {
-        imageSource.setImageBitmap(BitmapUtil.combine(background.copy(Bitmap.Config.ARGB_8888, true), person));
+        BitmapUtil.saveBitmapFile(BitmapUtil.combine(background.copy(Bitmap.Config.ARGB_8888, true), person));
     }
 
     @Override
@@ -90,5 +91,6 @@ public class BodySegmentResultView extends BaseResultView<HumanSegmentResponse> 
                 imageBg.setImageResource(resIds[currentIndex]);
                 break;
         }
+        combine(BitmapFactory.decodeResource(getResources(), resIds[currentIndex]));
     }
 }
