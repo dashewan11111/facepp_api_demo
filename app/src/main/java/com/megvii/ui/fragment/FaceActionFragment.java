@@ -100,6 +100,10 @@ public abstract class FaceActionFragment<P extends BaseFaceActionPresenter> exte
 
     }
 
+    public void onHeadCrop(final List<Bitmap> cropFaceList) {
+
+    }
+
     public void refreshUI(Bitmap bmp) {
         faceContainer.removeAllViews();
         resultContainer.removeAllViews();

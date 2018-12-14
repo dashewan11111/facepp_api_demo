@@ -21,6 +21,7 @@ import com.megvii.ui.fragment.FaceSetRemoveFaceFragmentAsync;
 import com.megvii.ui.fragment.FaceSetUpdateFragment;
 import com.megvii.ui.fragment.FaceSetUserIdFragment;
 import com.megvii.ui.fragment.GestureFragment;
+import com.megvii.ui.fragment.HeadSegmentFragment;
 import com.megvii.ui.fragment.ImageLicensePlateFragment;
 import com.megvii.ui.fragment.ImageMergeFragment;
 import com.megvii.ui.fragment.ImageSceneFragment;
@@ -196,6 +197,11 @@ public class ApiDataSource {
             "识别传入图片中人体的完整轮廓，进行人形抠像.",
             R.drawable.body_detect, BodySegmentFragment.class.getName());
 
+    private static final ApiItem HEAD_SEGMENT = new ApiItem("????",
+            "人头抠像 -- ??",
+            "非标准Api，detect + 裁剪 + segment",
+            R.drawable.body_detect, HeadSegmentFragment.class.getName());
+
     private static final ApiItem GESTURE = new ApiItem("humanbodypp/beta/gesture",
             "手势识别 -- HumanBody Gesture API",
             "检测图片中出现的所有的手部，并返回其在图片中的矩形框位置与相应的手势含义。目前可以识别 19 种手势。",
@@ -206,6 +212,7 @@ public class ApiDataSource {
     static {
         BODY_APIS.add(BODY_DETECT);
         BODY_APIS.add(BODY_SEGMENT);
+        BODY_APIS.add(HEAD_SEGMENT);
         BODY_APIS.add(GESTURE);
     }
 
